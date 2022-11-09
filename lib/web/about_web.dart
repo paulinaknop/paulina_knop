@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:paulina_knop/components.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AboutWeb extends StatefulWidget {
   const AboutWeb({Key? key}) : super(key: key);
@@ -14,65 +11,9 @@ class AboutWeb extends StatefulWidget {
 class _AboutWebState extends State<AboutWeb> {
   @override
   Widget build(BuildContext context) {
-    urlLauncher(String imgPath, String url) {
-      return IconButton(
-        icon: SvgPicture.asset(imgPath, color: Colors.black, width: 35),
-        onPressed: () async {
-          await launch(url);
-        },
-      );
-    }
-
-    tealContainer(String text) {
-      return Container(
-        decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.tealAccent,
-              style: BorderStyle.solid,
-              width: 2.0,
-            ),
-            borderRadius: BorderRadius.circular(5.0)),
-        padding: EdgeInsets.all(7.0),
-        child: Text(
-          text,
-          style: GoogleFonts.openSans(fontSize: 15.0),
-        ),
-      );
-    }
-
     var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-        backgroundColor: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 72.0,
-              backgroundColor: Colors.tealAccent,
-              child: CircleAvatar(
-                radius: 70.0,
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage("assets/image.png"),
-              ),
-            ),
-            SizedBox(height: 15.0),
-            SansBold("Paulina Knop", 30.0),
-            SizedBox(height: 15.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                urlLauncher("assets/instagram.svg",
-                    "https://www.instagram.com/tomcruise/"),
-                urlLauncher(
-                    "assets/twitter.svg", "https://www.twitter.com/tomcruise"),
-                urlLauncher(
-                    "assets/github.svg", "https://www.github.com/paulinaknop"),
-              ],
-            ),
-          ],
-        ),
-      ),
+      drawer: DrawersWeb(),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -81,21 +22,7 @@ class _AboutWebState extends State<AboutWeb> {
           size: 25.0,
           color: Colors.black,
         ),
-        title: Row(
-          children: [
-            Spacer(flex: 3),
-            TabsWeb(title: "Home", route: '/'),
-            Spacer(),
-            TabsWeb(title: "Works", route: '/works'),
-            Spacer(),
-            TabsWeb(title: "Blog", route: '/blog'),
-            Spacer(),
-            TabsWeb(title: "About", route: '/about'),
-            Spacer(),
-            TabsWeb(title: "Contact", route: '/contact'),
-            Spacer(),
-          ],
-        ),
+        title: TabsWebList(),
       ),
       body: ListView(
         children: [

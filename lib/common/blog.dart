@@ -1,18 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:paulina_knop/components.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class BlogMobile extends StatefulWidget {
-  const BlogMobile({Key? key}) : super(key: key);
+import '../components.dart';
+
+class Blog extends StatefulWidget {
+  const Blog({Key? key}) : super(key: key);
 
   @override
-  State<BlogMobile> createState() => _BlogMobileState();
+  State<Blog> createState() => _BlogState();
 }
 
-class _BlogMobileState extends State<BlogMobile> {
+class _BlogState extends State<Blog> {
   // List title = ["Who is Dash?", "Who is Dash 1?"];
   // List body = ["Well, we can all read about it in google", "Google it"];
   // void article() async {
@@ -43,74 +42,14 @@ class _BlogMobileState extends State<BlogMobile> {
   //   //article();
   //   super.initState();
   // }
-
   @override
   Widget build(BuildContext context) {
+    bool isWeb = MediaQuery.of(context).size.width > 800;
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.white,
-        endDrawer: Drawer(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DrawerHeader(
-                padding: EdgeInsets.only(bottom: 20.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(width: 2.0, color: Colors.black)),
-                  child: Image.asset(
-                    'assets/profile2-circle.png',
-                    filterQuality: FilterQuality.high,
-                  ),
-                ),
-              ),
-              TabsMobile(text: "Home", route: '/'),
-              SizedBox(height: 20.0),
-              TabsMobile(text: "Works", route: '/works'),
-              SizedBox(height: 20.0),
-              TabsMobile(text: "Blog", route: '/blog'),
-              SizedBox(height: 20.0),
-              TabsMobile(text: "About", route: '/about'),
-              SizedBox(height: 20.0),
-              TabsMobile(text: "Contact", route: '/contact'),
-              SizedBox(height: 40.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () async =>
-                        await launch("https://www.instagram.com/tomcruise"),
-                    icon: SvgPicture.asset(
-                      "assets/instagram.svg",
-                      color: Colors.black,
-                      width: 35.0,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () async =>
-                        await launch("https://www.twitter.com/tomcruise"),
-                    icon: SvgPicture.asset(
-                      "assets/twitter.svg",
-                      color: Colors.black,
-                      width: 35.0,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () async =>
-                        await launch("https://www.github.com/paulinaknop"),
-                    icon: SvgPicture.asset(
-                      "assets/github.svg",
-                      color: Colors.black,
-                      width: 35.0,
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
+        endDrawer: DrawersMobile(),
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -121,16 +60,17 @@ class _BlogMobileState extends State<BlogMobile> {
                   color: Colors.black,
                 ),
                 flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
+                  centerTitle: isWeb ? false : true,
                   title: Container(
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(3.0),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 4.0),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: isWeb ? 7.0 : 4.0),
                     child: AbelCustom(
                       text: "Welcome to my blog",
-                      size: 24.0,
+                      size: isWeb ? 30.0 : 24.0,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -141,7 +81,7 @@ class _BlogMobileState extends State<BlogMobile> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                expandedHeight: 400.0,
+                expandedHeight: isWeb ? 500.0 : 400.0,
               )
             ];
           },
@@ -151,14 +91,17 @@ class _BlogMobileState extends State<BlogMobile> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      DocumentSnapshot documentSnapshot =
-                          snapshot.data!.docs[index];
-                      return BlogPost(
-                          title: documentSnapshot["title"],
-                          body: documentSnapshot["body"]);
-                    });
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    DocumentSnapshot documentSnapshot =
+                        snapshot.data!.docs[index];
+                    return BlogPost(
+                      title: documentSnapshot["title"],
+                      body: documentSnapshot["body"],
+                      isWeb: isWeb,
+                    );
+                  },
+                );
               } else
                 return Center(
                   child: CircularProgressIndicator(),
@@ -174,7 +117,12 @@ class _BlogMobileState extends State<BlogMobile> {
 class BlogPost extends StatefulWidget {
   final title;
   final body;
-  const BlogPost({Key? key, @required this.title, @required this.body})
+  final isWeb;
+  const BlogPost(
+      {Key? key,
+      @required this.title,
+      @required this.body,
+      required this.isWeb})
       : super(key: key);
 
   @override
@@ -186,7 +134,9 @@ class _BlogPostState extends State<BlogPost> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 30.0),
+      padding: widget.isWeb
+          ? EdgeInsets.only(left: 70.0, right: 70.0, top: 40.0)
+          : EdgeInsets.only(left: 20.0, right: 20.0, top: 30.0),
       child: Container(
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(

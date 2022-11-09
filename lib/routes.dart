@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:paulina_knop/common/blog.dart';
 import 'package:paulina_knop/mobile/about_mobile.dart';
-import 'package:paulina_knop/mobile/blog_mobile.dart';
+
 import 'package:paulina_knop/mobile/contact_mobile.dart';
 import 'package:paulina_knop/mobile/works_mobile.dart';
 import 'package:paulina_knop/web/about_web.dart';
-import 'package:paulina_knop/web/blog_web.dart';
+
 import 'package:paulina_knop/web/landing_page_web.dart';
 import 'package:paulina_knop/web/works_web.dart';
 
@@ -43,14 +44,7 @@ class Routes {
                 }),
             settings: settings);
       case '/blog':
-        return MaterialPageRoute(
-            builder: (_) => LayoutBuilder(builder: (context, constraints) {
-                  if (constraints.maxWidth > 800) {
-                    return BlogWeb();
-                  } else
-                    return BlogMobile();
-                }),
-            settings: settings);
+        return MaterialPageRoute(builder: (_) => Blog(), settings: settings);
       case '/works':
         return MaterialPageRoute(
             builder: (_) => LayoutBuilder(builder: (context, constraints) {
