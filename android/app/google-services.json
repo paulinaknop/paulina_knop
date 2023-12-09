@@ -1,43 +1,26 @@
 {
   "project_info": {
-    "project_number": "906950632784",
-    "project_id": "paulina-knop",
-    "storage_bucket": "paulina-knop.appspot.com"
+    "project_number": "555718417628",
+    "project_id": "portfolio-782e9",
+    "storage_bucket": "portfolio-782e9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:906950632784:android:3427342412a03a402d3855",
+        "mobilesdk_app_id": "1:555718417628:android:5cfdce50bfdb4bd24be819",
         "android_client_info": {
           "package_name": "paulinaknop.com.paulina_knop"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "906950632784-bj69u2qiq66rkqgbpa7t1jotl7f8vir7.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBi8cbVJlvjSXii7CNh6-SgB0i2_XZAaDI"
+          "current_key": "AIzaSyCJemnZV4Seo9n_atjl-FIrGEKa1yf95Ww"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "906950632784-bj69u2qiq66rkqgbpa7t1jotl7f8vir7.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "906950632784-26k53q0hqq813uv9ctc0rddliemddba5.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "paulinaknop.com.paulinaKnop"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -57,6 +57,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    namespace 'paulinaknop.com.paulina_knop'
 }
 
 flutter {

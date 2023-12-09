@@ -1,16 +1,24 @@
-# paulina_knop
+# Portfolio App With Flutter by Coding Liquids
 
-A  Flutter project used to display a portfolio of a person. It can be deployed in Android, IOS and Web
+Personal Portfolio Flutter App
+Welcome to this Flutter-based portfolio application by Coding Liquids, designed to showcase an individual's achievements, skills, and projects.
+# Running the app
+1. Connect with your credentials of Firebase from the lecture "Connect Firebase to Flutter project using CLI"
+2. The app will show a blank screen, so code along with the video and finally your code will start working.
 
-## Getting Started
+3. Overview
+This application provides a dynamic and interactive way to present a person's professional journey. Built with Flutter, it ensures a seamless experience across multiple platforms.
 
-This project is a starting point for a Flutter application.
+Features
+Cross-Platform: Crafted with Flutter, this portfolio app is compatible with Android, iOS, and Web, ensuring a broad reach.
 
-A few resources to get you started if this is your first Flutter project:
+Interactive UI: Engage visitors with a user-friendly interface that highlights the portfolio's content.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Responsive Design: Whether viewed on a smartphone, tablet, or desktop, the app provides an optimal viewing experience.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Deployment
+The app is ready for deployment on the following platforms:
+
+Android
+iOS
+Web
